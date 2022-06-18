@@ -1,6 +1,9 @@
 package com.example.bluetoothgatttutorial.Service;
 
 import android.app.Service;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothGatt;
+import android.bluetooth.BluetoothManager;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
@@ -14,6 +17,10 @@ import android.os.IBinder;
 public class BluetoothGattService extends Service {
     private final LocalBinder binder = new LocalBinder();
     private static boolean isServiceRunning = false;
+
+    private BluetoothManager bluetoothManager;
+    private BluetoothAdapter bluetoothAdapter;
+    private BluetoothGatt bluetoothGatt;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -36,6 +43,7 @@ public class BluetoothGattService extends Service {
     @Override
     public void onDestroy() {
         isServiceRunning = false;
+
         super.onDestroy();
     }
 
